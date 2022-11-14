@@ -45,7 +45,9 @@
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_CAINFO, dirname(__FILE__)."/cacert.pem");
             $r = curl_exec($ch);
+            $info = curl_getinfo($ch);
             curl_close($ch);
             
             if ($json)
@@ -65,6 +67,23 @@
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($ch, CURLOPT_USERPWD, "$app_key:$app_secret");
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            $r = curl_exec($ch);
+            curl_close($ch);
+            return json_decode($r, true);
+        }
+
+        /*
+        * Special case function for handling the from_oauth1 request
+        */
+        public static function token($endpoint, $data, $app_key, $app_secret) {
+            $ch = curl_init($endpoint);
+            $headers = array("Content-Type: application/x-www-form-urlencoded");
+            curl_setopt($ch, CURLOPT_POST, TRUE);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            // curl_setopt($ch, CURLOPT_USERPWD, "$app_key:$app_secret");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_CAINFO, dirname(__FILE__)."/cacert.pem");
             $r = curl_exec($ch);
             curl_close($ch);
             return json_decode($r, true);
