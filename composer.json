@@ -1,5 +1,5 @@
 {
-    "name": "lukebaird/dropbox-v2-php-sdk",
+    "name": "pietos/dropbox-v2-php-sdk",
     "license": "MIT",
     "description": "A Dropbox SDK to work with the v2 API",
     "require": {
