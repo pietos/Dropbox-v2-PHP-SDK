@@ -4,11 +4,13 @@ PHP SDK for Dropbox built with the v2 API
 *Last update: 2/23/2018*
 
 ## Installation
-- Run `composer require lukebaird/dropbox-v2-php-sdk` in your project root
-
-### Additional info
-- [Packagist.org link](https://packagist.org/packages/lukebaird/dropbox-v2-php-sdk)
-- Latest version: `v1.1.6`
+- Include in composer.json this git repo
+"repositories": [{
+        "type": "git",
+        "url": "https://github.com/pietos/Dropbox-v2-PHP-SDK.git"
+ }],
+- Include the following requirement in composer.json
+  "pietos/dropbox-v2-php-sdk": "dev-master",
 
 ## Documentation
 - Documentation will be improved in the future. Check out [Example.php](Example.php) for basic usage.
