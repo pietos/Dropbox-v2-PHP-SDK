@@ -28,6 +28,18 @@
                 return $returnData["oauth2_token"];
             }
         }
+
+        public function token($code, $app_key, $app_secret,$redirect_uri) {
+            $endpoint = "https://api.dropboxapi.com/oauth2/token";
+            $postdata = "code=$code&grant_type=authorization_code&client_id=$app_key&client_secret=$app_secret&redirect_uri=$redirect_uri";
+            $returnData = Dropbox::token($endpoint, $postdata, $app_key, $app_secret);
+            if (isset($returnData["error"])) {
+                return $returnData["error_description"];
+            }
+            else {
+                return $returnData;
+            }
+        }
         
         /*
         * Revokes an access token
